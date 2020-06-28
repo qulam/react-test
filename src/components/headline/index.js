@@ -30,7 +30,7 @@ Headline.propTypes = {
         age: PropTypes.number,
         email: PropTypes.string,
         onlineStatus: PropTypes.bool,
-    }))
+    })),
 };
 
 export default Headline;
