@@ -16,15 +16,35 @@ const tempArr = [{
     onlineStatus: true
 }];
 
+const initialState = {
+    hideBtn: false,
+
+};
+
 class App extends Component {
 
     constructor(props) {
         super(props);
         this.fetch = this.fetch.bind(this);
+        this.state = {
+            ...initialState,
+        }
     }
 
     fetch() {
         this.props.fetchPosts();
+        this.exampleMethod_updateState();
+    }
+
+    exampleMethod_updateState() {
+        const {hideBtn} = this.state;
+        this.setState({
+            hideBtn: !hideBtn
+        });
+    }
+
+    exampleMethod_returnAValue(number){
+        return number + 1;
     }
 
     render() {
@@ -39,6 +59,8 @@ class App extends Component {
             desc: 'Write Unit && Integration Tests In React'
         };
 
+        const {hideBtn} = this.state;
+
         return (
             <div className="App" data-test="appComponent">
                 <Header/>
@@ -48,8 +70,10 @@ class App extends Component {
                         desc="Javascript is awesome"
                         tempArr={tempArr}
                     />
+                    {
+                        !hideBtn && <SharedButton {...configButton} />
+                    }
                     <ArticleComponent {...configArticleComponent}  />
-                    <SharedButton {...configButton} />
                     {
                         posts.length > 0 &&
                         <div>
